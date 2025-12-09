@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Image Gallery | GitHub Pages</title>
+  <title>Reference Driving School | Safe, Calm & Friendly Driving Lessons</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --accent: #ec4899;
-      --bg: #0f0f23;
-      --bg-card: #1a1a2e;
-      --bg-light: #16213e;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
-      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --primary: #1e40af;
+      --primary-dark: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #f59e0b;
+      --accent-dark: #d97706;
+      --bg: #f8fafc;
+      --bg-dark: #0f172a;
+      --card: #ffffff;
+      --text: #0f172a;
+      --text-light: #f8fafc;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.15);
     }
 
     * {
@@ -27,12 +32,15 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
+      line-height: 1.7;
     }
 
     img {
@@ -46,39 +54,8 @@
     }
 
     .container {
-      width: min(1200px, 90vw);
+      width: min(1200px, 92%);
       margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Animated Background */
-    .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .bg-animation::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 40% 40%, rgba(118, 75, 162, 0.1) 0%, transparent 40%);
-      animation: float 20s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(30px, -30px) rotate(5deg); }
-      66% { transform: translate(-20px, 20px) rotate(-5deg); }
     }
 
     /* Navigation */
@@ -88,10 +65,11 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 20px 0;
-      background: rgba(15, 15, 35, 0.8);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      transition: all 0.3s ease;
     }
 
     nav .container {
@@ -101,36 +79,135 @@
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
       font-weight: 800;
-      font-size: 24px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--primary-dark);
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 32px;
       list-style: none;
     }
 
     .nav-links a {
       font-weight: 500;
-      color: var(--text-muted);
+      color: var(--muted);
       transition: color 0.3s ease;
+      font-size: 15px;
     }
 
     .nav-links a:hover {
-      color: var(--text);
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 8px 30px rgba(30, 64, 175, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(30, 64, 175, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: rgba(30, 64, 175, 0.05);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      color: white;
+      box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .btn-whatsapp:hover {
+      background: #20bd5a;
+      transform: translateY(-2px);
     }
 
     /* Hero Section */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 0 80px;
+      padding: 140px 0 100px;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(30, 64, 175, 0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .hero-content {
@@ -140,331 +217,151 @@
       align-items: center;
     }
 
-    .hero-text h1 {
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 800;
-      line-height: 1.1;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: white;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary);
+      box-shadow: var(--shadow);
       margin-bottom: 24px;
     }
 
-    .hero-text h1 span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero-badge::before {
+      content: '🎖️';
     }
 
-    .hero-text p {
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      color: var(--primary-dark);
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-description {
       font-size: 18px;
-      color: var(--text-muted);
+      color: var(--muted);
       margin-bottom: 32px;
-      max-width: 500px;
+      max-width: 520px;
     }
 
     .hero-buttons {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
+      margin-bottom: 40px;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
+    .hero-stats {
+      display: flex;
+      gap: 40px;
     }
 
-    .btn-primary {
-      background: var(--gradient);
-      color: white;
-      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+    .hero-stat {
+      text-align: center;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.4);
+    .hero-stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--primary);
     }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-3px);
+    .hero-stat-label {
+      font-size: 14px;
+      color: var(--muted);
     }
 
     .hero-image {
       position: relative;
     }
 
-    .hero-image img {
+    .hero-image-main {
       border-radius: 24px;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
+      border: 4px solid white;
     }
 
-    .hero-image::before {
-      content: '';
+    .hero-image-badge {
       position: absolute;
-      inset: -4px;
-      background: var(--gradient);
-      border-radius: 28px;
-      z-index: -1;
-      opacity: 0.5;
-      filter: blur(20px);
-    }
-
-    /* Stats */
-    .stats {
-      display: flex;
-      gap: 40px;
-      margin-top: 48px;
-    }
-
-    .stat {
-      text-align: left;
-    }
-
-    .stat-number {
-      font-size: 32px;
-      font-weight: 800;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    /* Gallery Section */
-    .gallery-section {
-      padding: 100px 0;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header h2 {
-      font-size: 42px;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .section-header h2 span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .section-header p {
-      color: var(--text-muted);
-      font-size: 18px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Masonry Gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .gallery-item {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      background: var(--bg-card);
+      bottom: -20px;
+      left: -20px;
+      background: white;
+      padding: 16px 24px;
+      border-radius: 16px;
       box-shadow: var(--shadow);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .gallery-item:nth-child(3n+1) {
-      grid-row: span 2;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.1);
-    }
-
-    .gallery-item-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 24px;
-    }
-
-    .gallery-item:hover .gallery-item-overlay {
-      opacity: 1;
-    }
-
-    .gallery-item-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .gallery-item-desc {
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    /* Categories */
-    .categories {
-      display: flex;
-      justify-content: center;
+      align-items: center;
       gap: 12px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
     }
 
-    .category-btn {
-      padding: 10px 24px;
-      border-radius: 100px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-muted);
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .category-btn:hover,
-    .category-btn.active {
-      background: var(--gradient);
-      border-color: transparent;
-      color: white;
-    }
-
-    /* Featured Section */
-    .featured {
-      padding: 100px 0;
-      background: var(--bg-light);
-    }
-
-    .featured-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 30px;
-    }
-
-    .featured-main {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      height: 500px;
-    }
-
-    .featured-main img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .featured-main-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 40px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
-    }
-
-    .featured-badge {
-      display: inline-block;
-      padding: 6px 16px;
-      background: var(--gradient);
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .featured-main h3 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .featured-main p {
-      color: var(--text-muted);
-    }
-
-    .featured-side {
+    .hero-image-badge-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      border-radius: 12px;
       display: flex;
-      flex-direction: column;
-      gap: 30px;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
     }
 
-    .featured-side-item {
-      flex: 1;
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .featured-side-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .featured-side-item::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
-    }
-
-    .featured-side-content {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      z-index: 1;
-    }
-
-    .featured-side-item h4 {
+    .hero-image-badge-text strong {
+      display: block;
       font-size: 18px;
-      font-weight: 600;
+      color: var(--text);
+    }
+
+    .hero-image-badge-text span {
+      font-size: 13px;
+      color: var(--muted);
     }
 
     /* About Section */
     .about {
       padding: 100px 0;
+      background: white;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--primary-dark);
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: var(--muted);
     }
 
     .about-content {
@@ -478,125 +375,666 @@
       position: relative;
     }
 
-    .about-img-1 {
+    .about-img-main {
       border-radius: 24px;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
     }
 
-    .about-img-2 {
+    .about-img-overlay {
       position: absolute;
-      bottom: -40px;
-      right: -40px;
-      width: 60%;
+      bottom: -30px;
+      right: -30px;
+      width: 55%;
       border-radius: 20px;
-      border: 6px solid var(--bg);
+      border: 6px solid white;
       box-shadow: var(--shadow);
     }
 
-    .about-text h2 {
-      font-size: 42px;
-      font-weight: 800;
-      margin-bottom: 24px;
+    .about-experience {
+      position: absolute;
+      top: 20px;
+      left: -20px;
+      background: var(--primary-dark);
+      color: white;
+      padding: 20px 28px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
     }
 
-    .about-text h2 span {
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .about-experience strong {
+      display: block;
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .about-experience span {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .about-text h3 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--primary-dark);
     }
 
     .about-text p {
-      color: var(--text-muted);
-      margin-bottom: 24px;
-      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 16px;
     }
 
-    .features-list {
-      list-style: none;
-      margin-top: 32px;
-    }
-
-    .features-list li {
+    .military-badge {
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: 20px 24px;
+      border-radius: 16px;
+      margin: 24px 0;
+      border-left: 4px solid var(--accent);
+    }
+
+    .military-badge-icon {
+      font-size: 40px;
+    }
+
+    .military-badge-text h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .military-badge-text p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-weight: 500;
     }
 
-    .features-list li::before {
+    .about-feature::before {
       content: '✓';
       width: 28px;
       height: 28px;
-      background: var(--gradient);
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: white;
       font-size: 14px;
       flex-shrink: 0;
+    }
+
+    /* Why Choose Us */
+    .why-us {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* Gallery Section */
+    .gallery {
+      padding: 100px 0;
+      background: white;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+    }
+
+    .gallery-item.large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item-overlay h4 {
+      color: white;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .gallery-item-overlay p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+    }
+
+    .gallery-note {
+      text-align: center;
+      margin-top: 40px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+      border-radius: 16px;
+      border: 2px dashed var(--border);
+    }
+
+    .gallery-note p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .gallery-note strong {
+      color: var(--primary);
+    }
+
+    /* Pricing Section */
+    .pricing {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #0f172a 100%);
+      color: white;
+    }
+
+    .pricing .section-header h2 {
+      color: white;
+    }
+
+    .pricing .section-header p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .pricing .section-badge {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .price-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .price-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-8px);
+    }
+
+    .price-card.featured {
+      background: white;
+      color: var(--text);
+      transform: scale(1.05);
+    }
+
+    .price-card.featured:hover {
+      transform: scale(1.05) translateY(-8px);
+    }
+
+    .price-card-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--accent);
+      color: white;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .price-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .price-card .price {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .price-card.featured .price {
+      color: var(--primary);
+    }
+
+    .price-card .price-note {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 24px;
+    }
+
+    .price-features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .price-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+    }
+
+    .price-card.featured .price-features li {
+      border-color: var(--border);
+    }
+
+    .price-features li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    /* Reviews Section */
+    .reviews {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .reviews-header .section-header {
+      text-align: left;
+      margin: 0;
+    }
+
+    .google-rating {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: white;
+      padding: 20px 28px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .google-logo {
+      width: 48px;
+      height: 48px;
+    }
+
+    .google-rating-content strong {
+      display: block;
+      font-size: 28px;
+      color: var(--text);
+    }
+
+    .google-rating-stars {
+      color: #FBBC04;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .google-rating-count {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .review-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .review-avatar {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .review-author-info h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .review-author-info span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .review-stars {
+      color: #FBBC04;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+
+    .review-text {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .review-date {
+      font-size: 13px;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .review-google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .reviews-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .reviews-cta p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 100px 0;
+      background: white;
+    }
+
+    .faq-grid {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--primary-light);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 24px;
+      background: white;
+      border: none;
+      text-align: left;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 24px;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+    }
+
+    .faq-answer p {
+      padding: 0 24px 24px;
+      color: var(--muted);
+      font-size: 15px;
     }
 
     /* Contact Section */
     .contact {
       padding: 100px 0;
-      background: var(--bg-light);
+      background: var(--bg);
     }
 
     .contact-wrapper {
-      background: var(--bg-card);
-      border-radius: 32px;
-      padding: 60px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      background: white;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-info {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 48px;
     }
 
     .contact-info h2 {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 800;
       margin-bottom: 16px;
     }
 
-    .contact-info p {
-      color: var(--text-muted);
-      margin-bottom: 32px;
+    .contact-info > p {
+      opacity: 0.9;
+      margin-bottom: 40px;
     }
 
-    .contact-links {
+    .contact-methods {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
     }
 
-    .contact-link {
+    .contact-method {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 16px;
-      color: var(--text-muted);
-      transition: color 0.3s ease;
     }
 
-    .contact-link:hover {
-      color: var(--text);
-    }
-
-    .contact-link-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+    .contact-method-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .contact-method h4 {
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.8;
+      margin-bottom: 4px;
+    }
+
+    .contact-method p {
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .contact-method a {
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-method a:hover {
+      opacity: 0.8;
+    }
+
+    .contact-form-wrapper {
+      padding: 48px;
+    }
+
+    .contact-form-wrapper h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+
+    .contact-form-wrapper > p {
+      color: var(--muted);
+      margin-bottom: 32px;
     }
 
     .contact-form {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
 
@@ -609,24 +1047,27 @@
     .form-group label {
       font-weight: 500;
       font-size: 14px;
+      color: var(--text);
     }
 
     .form-group input,
-    .form-group textarea {
+    .form-group textarea,
+    .form-group select {
       padding: 16px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text);
+      border: 2px solid var(--border);
       font-family: inherit;
       font-size: 16px;
-      transition: border-color 0.3s ease;
+      transition: all 0.3s ease;
+      background: var(--bg);
     }
 
     .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group textarea:focus,
+    .form-group select:focus {
       outline: none;
       border-color: var(--primary);
+      background: white;
     }
 
     .form-group textarea {
@@ -636,33 +1077,41 @@
 
     /* Footer */
     footer {
+      background: var(--bg-dark);
+      color: white;
       padding: 60px 0 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand {
+      max-width: 300px;
     }
 
     .footer-logo {
-      font-weight: 800;
-      font-size: 24px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .social-links {
       display: flex;
-      gap: 16px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .social-link {
+    .footer-brand p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
       width: 44px;
       height: 44px;
       background: rgba(255, 255, 255, 0.1);
@@ -673,259 +1122,257 @@
       transition: all 0.3s ease;
     }
 
-    .social-link:hover {
-      background: var(--gradient);
+    .footer-social a:hover {
+      background: var(--primary);
       transform: translateY(-3px);
     }
 
+    .footer-column h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column li {
+      margin-bottom: 12px;
+    }
+
+    .footer-column a {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column a:hover {
+      color: white;
+    }
+
     .footer-bottom {
-      text-align: center;
-      margin-top: 40px;
       padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
+      color: rgba(255, 255, 255, 0.6);
       font-size: 14px;
     }
 
+    /* Mobile Menu */
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .mobile-menu-btn span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+
     /* Responsive */
-    @media (max-width: 968px) {
+    @media (max-width: 1024px) {
       .hero-content,
       .about-content,
-      .featured-grid,
-      .contact-wrapper {
+      .contact-wrapper,
+      .footer-content {
         grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .hero-image {
         order: -1;
       }
 
-      .stats {
-        justify-content: center;
-      }
-
-      .about-img-2 {
+      .about-img-overlay {
         position: relative;
         bottom: 0;
         right: 0;
         width: 100%;
         margin-top: 20px;
+        border: none;
       }
 
-      .featured-main {
-        height: 400px;
+      .about-experience {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+        display: inline-block;
       }
 
-      .featured-side {
-        flex-direction: row;
-      }
-
-      .featured-side-item {
-        height: 250px;
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 640px) {
-      .nav-links {
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-cta {
         display: none;
       }
 
-      .hero-text h1 {
-        font-size: 36px;
+      .mobile-menu-btn {
+        display: flex;
       }
 
-      .section-header h2 {
-        font-size: 32px;
+      .hero {
+        padding: 120px 0 60px;
       }
 
-      .gallery {
-        grid-template-columns: 1fr;
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 24px;
       }
 
-      .gallery-item:nth-child(3n+1) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-item.large {
+        grid-column: span 2;
         grid-row: span 1;
       }
 
-      .contact-wrapper {
-        padding: 30px;
+      .reviews-grid {
+        grid-template-columns: 1fr;
       }
 
-      .featured-side {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-info,
+      .contact-form-wrapper {
+        padding: 32px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
         flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .section-header h2 {
+        font-size: 28px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item.large {
+        grid-column: span 1;
+      }
+
+      .hero-image-badge {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        margin-top: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="bg-animation"></div>
-
+  <!-- Navigation -->
   <nav>
     <div class="container">
-      <a href="#" class="logo">ImageHub</a>
+      <a href="#" class="logo">
+        <div class="logo-icon">R</div>
+        <div class="logo-text">
+          Reference
+          <span>Driving School</span>
+        </div>
+      </a>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#featured">Featured</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#reviews">Reviews</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <div class="nav-cta">
+        <a href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20driving%20lessons" class="btn btn-primary" target="_blank">
+          Book Now
+        </a>
+      </div>
+      <button class="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
-          <h1>Discover Beautiful <span>Images</span></h1>
-          <p>Explore a stunning collection of high-quality photographs from around the world. Curated with passion, shared with love.</p>
+          <div class="hero-badge">Ex-Forces Instructor • All Vehicle Categories</div>
+          <h1>Learn to Drive in a <span>Safe, Calm & Friendly</span> Environment</h1>
+          <p class="hero-description">Reference Driving School puts you on easy mode. Our patient, structured approach helps you understand the skills needed for safe driving—not just to pass the test, but to stay safe on the road for life.</p>
           <div class="hero-buttons">
-            <a href="#gallery" class="btn btn-primary">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              View Gallery
+            <a href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20automatic%20driving%20lessons" class="btn btn-whatsapp" target="_blank">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp Booking
             </a>
-            <a href="#about" class="btn btn-secondary">Learn More</a>
+            <a href="tel:+447557880726" class="btn btn-secondary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              Call Now
+            </a>
           </div>
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-number">500+</div>
-              <div class="stat-label">Photos</div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-number">10+</div>
+              <div class="hero-stat-label">Years Experience</div>
             </div>
-            <div class="stat">
-              <div class="stat-number">50+</div>
-              <div class="stat-label">Categories</div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">500+</div>
+              <div class="hero-stat-label">Students Passed</div>
             </div>
-            <div class="stat">
-              <div class="stat-number">10K+</div>
-              <div class="stat-label">Downloads</div>
+            <div class="hero-stat">
+              <div class="hero-stat-number">5.0</div>
+              <div class="hero-stat-label">Google Rating</div>
             </div>
           </div>
         </div>
         <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=800&q=80" alt="Beautiful landscape" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery-section" id="gallery">
-    <div class="container">
-      <div class="section-header">
-        <h2>Explore Our <span>Gallery</span></h2>
-        <p>Browse through our curated collection of stunning photographs capturing moments from nature, architecture, and beyond.</p>
-      </div>
-
-      <div class="categories">
-        <button class="category-btn active">All</button>
-        <button class="category-btn">Nature</button>
-        <button class="category-btn">Architecture</button>
-        <button class="category-btn">Travel</button>
-        <button class="category-btn">Abstract</button>
-      </div>
-
-      <div class="gallery">
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Mountain peaks" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">Alpine Majesty</h3>
-            <p class="gallery-item-desc">Snow-capped peaks at dawn</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80" alt="Japanese temple" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">Kyoto Dreams</h3>
-            <p class="gallery-item-desc">Traditional Japanese architecture</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80" alt="Ocean waves" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">Ocean Whispers</h3>
-            <p class="gallery-item-desc">Waves meeting the shore</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Starry mountain" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">Starlit Peaks</h3>
-            <p class="gallery-item-desc">Mountains under the stars</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Foggy forest" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">Misty Forest</h3>
-            <p class="gallery-item-desc">Morning fog in the woods</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Desert dunes" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">Golden Sands</h3>
-            <p class="gallery-item-desc">Desert landscapes at sunset</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1682686581362-7c43fb1a61b5?auto=format&fit=crop&w=800&q=80" alt="Underwater scene" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">Deep Blue</h3>
-            <p class="gallery-item-desc">Underwater wonders</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=800&q=80" alt="Mountain sunrise" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">First Light</h3>
-            <p class="gallery-item-desc">Sunrise over the mountains</p>
-          </div>
-        </div>
-
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Lake reflection" />
-          <div class="gallery-item-overlay">
-            <h3 class="gallery-item-title">Mirror Lake</h3>
-            <p class="gallery-item-desc">Perfect reflections</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="featured" id="featured">
-    <div class="container">
-      <div class="section-header">
-        <h2>Featured <span>Collections</span></h2>
-        <p>Hand-picked selections showcasing the best of photography</p>
-      </div>
-
-      <div class="featured-grid">
-        <div class="featured-main">
-          <img src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=1200&q=80" alt="Featured landscape" />
-          <div class="featured-main-content">
-            <span class="featured-badge">Editor's Choice</span>
-            <h3>Northern Lights Adventure</h3>
-            <p>Capturing the magical aurora borealis in Iceland's remote wilderness.</p>
-          </div>
-        </div>
-
-        <div class="featured-side">
-          <div class="featured-side-item">
-            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Mountain view" />
-            <div class="featured-side-content">
-              <h4>Mountain Escapes</h4>
-            </div>
-          </div>
-          <div class="featured-side-item">
-            <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80" alt="Waterfall" />
-            <div class="featured-side-content">
-              <h4>Water Wonders</h4>
+          <img class="hero-image-main" src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80" alt="Driving instructor with student" />
+          <div class="hero-image-badge">
+            <div class="hero-image-badge-icon">✓</div>
+            <div class="hero-image-badge-text">
+              <strong>First Time Pass</strong>
+              <span>High success rate</span>
             </div>
           </div>
         </div>
@@ -933,88 +1380,676 @@
     </div>
   </section>
 
+  <!-- About Section -->
   <section class="about" id="about">
     <div class="container">
       <div class="about-content">
         <div class="about-images">
-          <img class="about-img-1" src="https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?auto=format&fit=crop&w=800&q=80" alt="Photographer" />
-          <img class="about-img-2" src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=600&q=80" alt="Camera" />
+          <div class="about-experience">
+            <strong>10+</strong>
+            <span>Years Teaching</span>
+          </div>
+          <img class="about-img-main" src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80" alt="Driving lesson in progress" />
+          <img class="about-img-overlay" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Happy student with certificate" />
         </div>
         <div class="about-text">
-          <h2>About <span>ImageHub</span></h2>
-          <p>We're passionate about showcasing the world's beauty through stunning photography. Our collection features work from talented photographers across the globe.</p>
-          <p>Whether you're looking for inspiration, wallpapers, or just want to explore beautiful imagery, you've come to the right place.</p>
-          <ul class="features-list">
-            <li>High-resolution images</li>
-            <li>Curated collections</li>
-            <li>Regular updates</li>
-            <li>Free to explore</li>
-          </ul>
+          <span class="section-badge">About Your Instructor</span>
+          <h3>Safe Driving is a Skill for Life</h3>
+          <p>Reference Driving School is committed to providing driver training in a <strong>safe, calm, and friendly manner</strong>. I believe in putting learners on "easy mode"—breaking down complex driving skills into simple, understandable steps.</p>
+          <p>My aim is not only to help you pass your test but to ensure you become a <strong>safe, confident driver for life</strong>. Every lesson is designed with your safety and long-term success in mind.</p>
+          
+          <div class="military-badge">
+            <div class="military-badge-icon">🎖️</div>
+            <div class="military-badge-text">
+              <h4>Ex-Forces Driving Experience</h4>
+              <p>Proudly served in the Armed Forces where I gained extensive experience driving most vehicle categories—from cars to heavy goods vehicles. This background taught me discipline, patience, and the highest standards of vehicle control and safety.</p>
+            </div>
+          </div>
+
+          <div class="about-features">
+            <div class="about-feature">Patient coaching</div>
+            <div class="about-feature">Automatic specialist</div>
+            <div class="about-feature">Local test routes</div>
+            <div class="about-feature">Intensive courses</div>
+            <div class="about-feature">Mock test practice</div>
+            <div class="about-feature">Flexible scheduling</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Why Choose Us -->
+  <section class="why-us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Why Choose Us</span>
+        <h2>The Reference Difference</h2>
+        <p>What makes learning with Reference Driving School special</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🧘</div>
+          <h3>Calm Learning Environment</h3>
+          <p>No pressure, no stress. Learn at your own pace in a supportive, patient atmosphere that builds real confidence.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Easy Mode Teaching</h3>
+          <p>Complex maneuvers broken down into simple steps. I make learning to drive straightforward and achievable.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Safety First Approach</h3>
+          <p>Beyond passing the test—you'll develop lifelong safe driving habits backed by military-grade discipline.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚗</div>
+          <h3>Modern Automatic Car</h3>
+          <p>Learn in a comfortable, dual-control automatic vehicle. No clutch worries, faster progress to test readiness.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📍</div>
+          <h3>Local Test Route Expert</h3>
+          <p>Extensive knowledge of Coventry DVSA test routes and common challenge areas to maximize your success.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Intensive Options Available</h3>
+          <p>Need to pass quickly? Tailored intensive courses designed to get you test-ready in the shortest time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Gallery</span>
+        <h2>Success Stories & Moments</h2>
+        <p>Celebrating our students' achievements and journey to becoming safe drivers</p>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Placeholder images - replace with your own -->
+        <div class="gallery-item large">
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80" alt="Driving lesson" />
+          <div class="gallery-item-overlay">
+            <h4>Learning in Progress</h4>
+            <p>Patient, step-by-step instruction</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80" alt="Student success" />
+          <div class="gallery-item-overlay">
+            <h4>Test Day Success</h4>
+            <p>Another pass!</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80" alt="Happy student" />
+          <div class="gallery-item-overlay">
+            <h4>First Time Pass</h4>
+            <p>Celebrating success</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1502877828070-33b167ad6860?auto=format&fit=crop&w=600&q=80" alt="Practice session" />
+          <div class="gallery-item-overlay">
+            <h4>Route Practice</h4>
+            <p>Local test routes</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=600&q=80" alt="Driving practice" />
+          <div class="gallery-item-overlay">
+            <h4>Road Skills</h4>
+            <p>Building confidence</p>
+          </div>
+        </div>
+        <div class="gallery-item large">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80" alt="Certificate presentation" />
+          <div class="gallery-item-overlay">
+            <h4>Mission Accomplished</h4>
+            <p>Ready for the road ahead</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80" alt="Training vehicle" />
+          <div class="gallery-item-overlay">
+            <h4>Training Vehicle</h4>
+            <p>Modern automatic car</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=600&q=80" alt="Driving instructor" />
+          <div class="gallery-item-overlay">
+            <h4>Your Instructor</h4>
+            <p>Ex-Forces professional</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-note">
+        <p>📸 <strong>These are placeholder images.</strong> Replace them with your actual student success photos to showcase real testimonials and achievements!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Pricing</span>
+        <h2>Transparent, Fair Pricing</h2>
+        <p>No hidden fees—just quality instruction at competitive rates</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Single Lesson</h3>
+          <div class="price">£37</div>
+          <p class="price-note">per hour</p>
+          <ul class="price-features">
+            <li>1-hour session</li>
+            <li>Dual-control automatic car</li>
+            <li>Full insurance included</li>
+            <li>Flexible scheduling</li>
+          </ul>
+          <a href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20a%20single%20lesson" class="btn btn-secondary" target="_blank" style="width: 100%;">Book Lesson</a>
+        </div>
+
+        <div class="price-card featured">
+          <span class="price-card-badge">Most Popular</span>
+          <h3>10-Hour Package</h3>
+          <div class="price">£330</div>
+          <p class="price-note">Save £40</p>
+          <ul class="price-features">
+            <li>10 hours of tuition</li>
+            <li>Structured lesson plan</li>
+            <li>Progress tracking</li>
+            <li>Mock test included</li>
+            <li>Priority booking</li>
+          </ul>
+          <a href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20the%2010-hour%20package" class="btn btn-primary" target="_blank" style="width: 100%;">Get Started</a>
+        </div>
+
+        <div class="price-card">
+          <h3>2-Hour Session</h3>
+          <div class="price">£70</div>
+          <p class="price-note">per session</p>
+          <ul class="price-features">
+            <li>Extended practice time</li>
+            <li>Ideal for focused learning</li>
+            <li>Cover more ground</li>
+            <li>Perfect for maneuvers</li>
+          </ul>
+          <a href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20a%202-hour%20session" class="btn btn-secondary" target="_blank" style="width: 100%;">Book Session</a>
+        </div>
+
+        <div class="price-card">
+          <h3>20-Hour Package</h3>
+          <div class="price">£640</div>
+          <p class="price-note">Save £100</p>
+          <ul class="price-features">
+            <li>Complete beginner course</li>
+            <li>From L-plates to test ready</li>
+            <li>Multiple mock tests</li>
+            <li>Theory test support</li>
+            <li>Test day car included</li>
+          </ul>
+          <a href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20the%2020-hour%20package" class="btn btn-secondary" target="_blank" style="width: 100%;">Enquire Now</a>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <p style="color: rgba(255,255,255,0.7); margin-bottom: 16px;">Looking for an intensive crash course?</p>
+        <a href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20information%20about%20intensive%20driving%20courses" class="btn btn-accent" target="_blank">
+          Ask About Intensive Courses
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="reviews-header">
+        <div class="section-header">
+          <span class="section-badge">Testimonials</span>
+          <h2>What Our Students Say</h2>
+          <p>Real feedback from learners who passed with Reference Driving School</p>
+        </div>
+        <div class="google-rating">
+          <svg class="google-logo" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          <div class="google-rating-content">
+            <strong>5.0</strong>
+            <div class="google-rating-stars">★★★★★</div>
+            <div class="google-rating-count">Based on Google Reviews</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <!-- Review 1 - Placeholder -->
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-avatar">S</div>
+              <div class="review-author-info">
+                <h4>Sarah M.</h4>
+                <span>First Time Pass</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"Absolutely fantastic instructor! The calm and patient approach made all the difference. I was so nervous when I started but was put completely at ease. Passed first time thanks to the thorough preparation and mock tests."</p>
+          <div class="review-date">2 weeks ago</div>
+          <div class="review-google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Posted on Google
+          </div>
+        </div>
+
+        <!-- Review 2 - Placeholder -->
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-avatar">J</div>
+              <div class="review-author-info">
+                <h4>James T.</h4>
+                <span>Intensive Course</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"Did an intensive course and couldn't be happier. The military background really shows in the structured approach. Everything was explained clearly and I never felt rushed. Highly recommend to anyone wanting to learn properly, not just to pass."</p>
+          <div class="review-date">1 month ago</div>
+          <div class="review-google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Posted on Google
+          </div>
+        </div>
+
+        <!-- Review 3 - Placeholder -->
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-avatar">A</div>
+              <div class="review-author-info">
+                <h4>Amira K.</h4>
+                <span>Nervous Learner</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"As someone with severe driving anxiety, I tried 3 other instructors before finding Reference. The patience and calm demeanor made me feel safe. The 'easy mode' teaching style really works—everything suddenly made sense!"</p>
+          <div class="review-date">3 weeks ago</div>
+          <div class="review-google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Posted on Google
+          </div>
+        </div>
+
+        <!-- Review 4 - Placeholder -->
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-avatar">M</div>
+              <div class="review-author-info">
+                <h4>Mohammed R.</h4>
+                <span>Complete Beginner</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"Started with zero experience and passed in 20 hours. The step-by-step approach, local route knowledge, and thorough mock tests prepared me perfectly. Worth every penny. Thank you for making me a confident driver!"</p>
+          <div class="review-date">1 month ago</div>
+          <div class="review-google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Posted on Google
+          </div>
+        </div>
+
+        <!-- Review 5 - Placeholder -->
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-avatar">E</div>
+              <div class="review-author-info">
+                <h4>Emily W.</h4>
+                <span>Returning Learner</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"Had a bad experience years ago and gave up. Decided to try again and so glad I chose Reference. The calm, friendly manner completely changed my perspective. Finally got my licence at 35! Never too late with the right instructor."</p>
+          <div class="review-date">2 months ago</div>
+          <div class="review-google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Posted on Google
+          </div>
+        </div>
+
+        <!-- Review 6 - Placeholder -->
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-author">
+              <div class="review-avatar">D</div>
+              <div class="review-author-info">
+                <h4>David P.</h4>
+                <span>Parent Review</span>
+              </div>
+            </div>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-text">"My daughter learned with Reference and I was impressed by the professionalism and focus on safety over just passing. The forces background brings discipline and structure that other instructors lack. Highly recommend for any parent."</p>
+          <div class="review-date">6 weeks ago</div>
+          <div class="review-google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Posted on Google
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-cta">
+        <p>Read all our reviews and leave your own feedback</p>
+        <!-- 
+          ⭐ HOW TO LINK ACTUAL GOOGLE REVIEWS ⭐
+          
+          Replace YOUR_PLACE_ID below with your Google Place ID.
+          
+          To find your Place ID:
+          1. Go to: https://developers.google.com/maps/documentation/places/web-service/place-id
+          2. Search for "Reference Driving School"
+          3. Copy the Place ID
+          
+          Or use this direct link format:
+          https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID
+          
+          For viewing reviews:
+          https://search.google.com/local/reviews?placeid=YOUR_PLACE_ID
+        -->
+        <a href="https://www.google.com/search?q=Reference+Driving+School+Coventry+reviews" class="btn btn-primary" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          </svg>
+          See All Google Reviews
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know before booking</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item active">
+          <button class="faq-question">Do you only teach automatic?</button>
+          <div class="faq-answer">
+            <p>Yes, I specialize in automatic driving lessons. Automatic cars are easier to learn, allowing you to focus on road awareness and safety rather than gear changes. You'll progress faster and feel more confident.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What areas do you cover?</button>
+          <div class="faq-answer">
+            <p>I cover the Coventry area and surrounding regions. Lessons include practice on actual DVSA test routes so you're fully prepared for your test day.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Do you offer intensive courses?</button>
+          <div class="faq-answer">
+            <p>Yes! Intensive courses are available for learners who want to pass quickly. Contact me via WhatsApp to discuss a tailored plan based on your current experience level and availability.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">How many lessons will I need?</button>
+          <div class="faq-answer">
+            <p>This varies for each learner. Complete beginners typically need 20-40 hours, while those with some experience may need less. I'll give you an honest assessment after your first lesson.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Do you help with theory test preparation?</button>
+          <div class="faq-answer">
+            <p>While practical lessons focus on driving, I'm happy to provide guidance and tips for theory test preparation, including recommended apps and resources.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What if I need to cancel a lesson?</button>
+          <div class="faq-answer">
+            <p>Please provide at least 48 hours notice for cancellations. This allows me to offer the slot to other learners. Late cancellations may incur a fee.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
   <section class="contact" id="contact">
     <div class="container">
       <div class="contact-wrapper">
         <div class="contact-info">
-          <h2>Get In Touch</h2>
-          <p>Have questions or want to collaborate? We'd love to hear from you!</p>
-          <div class="contact-links">
-            <a href="mailto:hello@imagehub.com" class="contact-link">
-              <span class="contact-link-icon">✉️</span>
-              <span>hello@imagehub.com</span>
+          <h2>Ready to Start?</h2>
+          <p>Book your first lesson today and begin your journey to becoming a safe, confident driver.</p>
+          
+          <div class="contact-methods">
+            <a href="https://wa.me/447557880726" class="contact-method" target="_blank">
+              <div class="contact-method-icon">💬</div>
+              <div>
+                <h4>WhatsApp (Preferred)</h4>
+                <p>07557 880726</p>
+              </div>
             </a>
-            <a href="#" class="contact-link">
-              <span class="contact-link-icon">📍</span>
-              <span>San Francisco, CA</span>
+            <a href="tel:+447557880726" class="contact-method">
+              <div class="contact-method-icon">📞</div>
+              <div>
+                <h4>Phone</h4>
+                <p>07557 880726</p>
+              </div>
             </a>
-            <a href="#" class="contact-link">
-              <span class="contact-link-icon">🌐</span>
-              <span>www.imagehub.com</span>
+            <a href="mailto:dphago@hotmail.com" class="contact-method">
+              <div class="contact-method-icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p>dphago@hotmail.com</p>
+              </div>
             </a>
+            <div class="contact-method">
+              <div class="contact-method-icon">📍</div>
+              <div>
+                <h4>Location</h4>
+                <p>Coventry & Surrounding Areas</p>
+              </div>
+            </div>
           </div>
         </div>
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks for your message!');">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="your@email.com" required />
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" placeholder="Your message..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
+
+        <div class="contact-form-wrapper">
+          <h3>Send a Message</h3>
+          <p>Or fill out this form and I'll get back to you shortly</p>
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your message! I will get back to you soon.');">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="07XXX XXXXXX" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="experience">Driving Experience</label>
+              <select id="experience">
+                <option value="">Select your experience level</option>
+                <option value="complete-beginner">Complete Beginner</option>
+                <option value="some-lessons">Had some lessons before</option>
+                <option value="returning">Returning after a break</option>
+                <option value="test-ready">Nearly test ready</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell me about your goals, availability, or any questions..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Enquiry</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-content">
-        <a href="#" class="footer-logo">ImageHub</a>
-        <div class="social-links">
-          <a href="#" class="social-link" title="GitHub">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="#" class="social-link" title="Twitter">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-          </a>
-          <a href="#" class="social-link" title="Instagram">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-icon" style="background: rgba(255,255,255,0.1);">R</div>
+            <div class="logo-text" style="color: white;">
+              Reference
+              <span style="color: rgba(255,255,255,0.6);">Driving School</span>
+            </div>
+          </div>
+          <p>Safe, calm, and friendly driving instruction in Coventry. Ex-Forces instructor with experience across all vehicle categories.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/447557880726" target="_blank" title="WhatsApp">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="mailto:dphago@hotmail.com" title="Email">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+            <a href="https://www.google.com/search?q=Reference+Driving+School+Coventry" target="_blank" title="Google">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#fff" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#pricing">Weekly Lessons</a></li>
+            <li><a href="#pricing">Intensive Courses</a></li>
+            <li><a href="#pricing">Mock Tests</a></li>
+            <li><a href="#pricing">Refresher Lessons</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+447557880726">07557 880726</a></li>
+            <li><a href="mailto:dphago@hotmail.com">dphago@hotmail.com</a></li>
+            <li><a href="#contact">Coventry Area</a></li>
+          </ul>
         </div>
       </div>
+
       <div class="footer-bottom">
-        <p>© 2025 ImageHub. All rights reserved. Made with ❤️ for GitHub Pages.</p>
+        <p>© 2025 Reference Driving School. All rights reserved.</p>
+        <p>🎖️ Ex-Forces Instructor • Automatic Specialist • Coventry</p>
       </div>
     </div>
   </footer>
+
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(faq => {
+          faq.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
