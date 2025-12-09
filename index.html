@@ -3,370 +3,1018 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reference Driving School | Automatic Lessons</title>
+  <title>My Image Gallery | GitHub Pages</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary: #1d4ed8;
-      --primary-dark: #1e3a8a;
-      --accent: #0ea5e9;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #6b7280;
-      --shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --accent: #ec4899;
+      --bg: #0f0f23;
+      --bg-card: #1a1a2e;
+      --bg-light: #16213e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
-    * { box-sizing: border-box; }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Poppins', Arial, sans-serif;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1100px, 92vw); margin: 0 auto; }
-    header {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: #fff;
-      padding: 24px 0 60px;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      box-shadow: var(--shadow);
+
+    img {
+      max-width: 100%;
+      display: block;
     }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1200px, 90vw);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-animation::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 40%, rgba(118, 75, 162, 0.1) 0%, transparent 40%);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(5deg); }
+      66% { transform: translate(-20px, 20px) rotate(-5deg); }
+    }
+
+    /* Navigation */
     nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(15, 15, 35, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
     }
-    .brand { font-weight: 700; letter-spacing: 0.4px; }
-    .badge {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: #e2e8f0;
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
+
+    .logo {
+      font-weight: 800;
+      font-size: 24px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .hero {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      align-items: center;
-      margin-top: 24px;
-    }
-    .hero h1 {
-      margin: 8px 0 12px;
-      font-size: clamp(30px, 4vw, 42px);
-      letter-spacing: -0.4px;
-    }
-    .hero p { margin: 0 0 18px; color: #e2e8f0; }
-    .hero-actions {
+
+    .nav-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 30px;
+      list-style: none;
     }
+
+    .nav-links a {
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-text h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 500px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 8px;
-      padding: 12px 18px;
+      padding: 14px 28px;
       border-radius: 12px;
       font-weight: 600;
-      border: 1px solid transparent;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
     }
-    .btn-primary { background: #fff; color: var(--primary-dark); box-shadow: var(--shadow); }
-    .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
-    .btn:hover { transform: translateY(-1px); }
-    .hero-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      padding: 14px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
     }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      background: var(--gradient);
+      border-radius: 28px;
+      z-index: -1;
+      opacity: 0.5;
+      filter: blur(20px);
+    }
+
+    /* Stats */
     .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-top: 18px;
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
     }
+
     .stat {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 12px;
-      padding: 12px 14px;
+      text-align: left;
     }
-    .stat strong { display: block; font-size: 22px; margin-bottom: 4px; }
-    section { padding: 70px 0; }
-    .section-title { text-align: center; margin-bottom: 16px; }
-    .section-title h2 { margin: 0; font-size: 28px; letter-spacing: -0.3px; }
-    .section-title p { margin: 8px 0 0; color: var(--muted); }
-    .cards {
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Masonry Gallery */
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
     }
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      border: 1px solid #e5e7eb;
-    }
-    .card h3 { margin: 0 0 6px; }
-    .card p { margin: 0; color: var(--muted); }
-    .pricing {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .price-card {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-    .price-card h4 { margin: 0 0 6px; font-size: 18px; }
-    .price { margin: 0 0 6px; font-size: 24px; font-weight: 700; color: var(--primary); }
-    .price-note { margin: 0; color: var(--muted); font-size: 14px; }
-    .reviews, .faq, .gallery {
-      display: grid;
-      gap: 14px;
-      margin-top: 20px;
-    }
-    .reviews { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-    .review, details {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-    .review strong { display: block; margin-bottom: 6px; }
-    details summary { cursor: pointer; font-weight: 600; color: var(--text); }
-    details p { margin: 10px 0 0; color: var(--muted); }
-    .gallery { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .gallery figure {
-      margin: 0;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
+
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
       overflow: hidden;
-      background: #fff;
+      background: var(--bg-card);
       box-shadow: var(--shadow);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-    .gallery figcaption { padding: 10px 12px; font-size: 14px; color: var(--muted); }
-    .contact {
-      background: var(--primary-dark);
-      color: #fff;
-      border-radius: 18px;
+
+    .gallery-item:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-item:nth-child(3n+1) {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
       padding: 24px;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .gallery-item-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Categories */
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      padding: 10px 24px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--gradient);
+      border-color: transparent;
+      color: white;
+    }
+
+    /* Featured Section */
+    .featured {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .featured-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 30px;
+    }
+
+    .featured-main {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      height: 500px;
+    }
+
+    .featured-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .featured-main-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    }
+
+    .featured-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--gradient);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .featured-main h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .featured-main p {
+      color: var(--text-muted);
+    }
+
+    .featured-side {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .featured-side-item {
+      flex: 1;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .featured-side-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .featured-side-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+    }
+
+    .featured-side-content {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 1;
+    }
+
+    .featured-side-item h4 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* About Section */
+    .about {
+      padding: 100px 0;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: center;
+    }
+
+    .about-images {
+      position: relative;
+    }
+
+    .about-img-1 {
+      border-radius: 24px;
       box-shadow: var(--shadow);
     }
-    .contact p { margin: 6px 0 0; color: #dbeafe; }
-    footer { padding: 30px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+    .about-img-2 {
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 60%;
+      border-radius: 20px;
+      border: 6px solid var(--bg);
+      box-shadow: var(--shadow);
+    }
+
+    .about-text h2 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+
+    .about-text h2 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 17px;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-top: 32px;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .features-list li::before {
+      content: '✓';
+      width: 28px;
+      height: 28px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .contact-wrapper {
+      background: var(--bg-card);
+      border-radius: 32px;
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-info h2 {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--text);
+    }
+
+    .contact-link-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      padding: 60px 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-weight: 800;
+      font-size: 24px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      background: var(--gradient);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero-content,
+      .about-content,
+      .featured-grid,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .stats {
+        justify-content: center;
+      }
+
+      .about-img-2 {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .featured-main {
+        height: 400px;
+      }
+
+      .featured-side {
+        flex-direction: row;
+      }
+
+      .featured-side-item {
+        height: 250px;
+      }
+    }
+
     @media (max-width: 640px) {
-      nav { flex-direction: column; align-items: flex-start; }
-      .hero-actions .btn { width: 100%; justify-content: center; }
+      .nav-links {
+        display: none;
+      }
+
+      .hero-text h1 {
+        font-size: 36px;
+      }
+
+      .section-header h2 {
+        font-size: 32px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item:nth-child(3n+1) {
+        grid-row: span 1;
+      }
+
+      .contact-wrapper {
+        padding: 30px;
+      }
+
+      .featured-side {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
+  <div class="bg-animation"></div>
+
+  <nav>
     <div class="container">
-      <nav>
-        <div class="brand">Reference Driving School</div>
-        <div class="badge">Automatic · Intensive · Friendly coaching</div>
-      </nav>
-      <div class="hero">
-        <div>
-          <div class="badge">Automatic only · Coventry area</div>
-          <h1>Drive confident with Reference Driving School</h1>
-          <p>Automatic specialists with patient coaching, local test-route practice, and flexible weekly or intensive options.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20automatic%20lessons" target="_blank" rel="noopener">WhatsApp booking</a>
-            <a class="btn btn-secondary" href="mailto:dphago@hotmail.com">Email us</a>
+      <a href="#" class="logo">ImageHub</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#featured">Featured</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Discover Beautiful <span>Images</span></h1>
+          <p>Explore a stunning collection of high-quality photographs from around the world. Curated with passion, shared with love.</p>
+          <div class="hero-buttons">
+            <a href="#gallery" class="btn btn-primary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              View Gallery
+            </a>
+            <a href="#about" class="btn btn-secondary">Learn More</a>
           </div>
           <div class="stats">
-            <div class="stat"><strong>5+ yrs</strong><span>Automatic instruction</span></div>
-            <div class="stat"><strong>100+</strong><span>Student passes</span></div>
-            <div class="stat"><strong>High</strong><span>First-time pass focus</span></div>
+            <div class="stat">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Photos</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">10K+</div>
+              <div class="stat-label">Downloads</div>
+            </div>
           </div>
         </div>
-        <div class="hero-card">
-          <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=80" alt="Reference Driving School car" />
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section id="about">
-    <div class="container">
-      <div class="section-title">
-        <h2>Why choose us</h2>
-        <p>Automatic-only focus, calm feedback, and local expertise.</p>
-      </div>
-      <div class="cards">
-        <div class="card">
-          <h3>Automatic specialists</h3>
-          <p>Modern automatic cars—no clutch, no stall worries, faster progress.</p>
-        </div>
-        <div class="card">
-          <h3>Weekly or intensive</h3>
-          <p>Pick steady weekly lessons or a tailored intensive plan.</p>
-        </div>
-        <div class="card">
-          <h3>Test-route practice</h3>
-          <p>Local DVSA routes, mock tests, and feedback to build confidence.</p>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?auto=format&fit=crop&w=800&q=80" alt="Beautiful landscape" />
         </div>
       </div>
     </div>
   </section>
 
-  <section id="pricing">
+  <section class="gallery-section" id="gallery">
     <div class="container">
-      <div class="section-title">
-        <h2>Pricing</h2>
-        <p>Transparent rates, no hidden fees. Edit these to your exact numbers.</p>
+      <div class="section-header">
+        <h2>Explore Our <span>Gallery</span></h2>
+        <p>Browse through our curated collection of stunning photographs capturing moments from nature, architecture, and beyond.</p>
       </div>
-      <div class="pricing">
-        <div class="price-card">
-          <h4>Standard lesson</h4>
-          <p class="price">£37 / hour</p>
-          <p class="price-note">Automatic car included.</p>
-        </div>
-        <div class="price-card">
-          <h4>2-hour session</h4>
-          <p class="price">£70</p>
-          <p class="price-note">Great for focused practice.</p>
-        </div>
-        <div class="price-card">
-          <h4>10-hour package</h4>
-          <p class="price">£330</p>
-          <p class="price-note">Build strong fundamentals.</p>
-        </div>
-        <div class="price-card">
-          <h4>20-hour package</h4>
-          <p class="price">£640</p>
-          <p class="price-note">From beginner to test-ready.</p>
-        </div>
-      </div>
-      <div class="hero-actions" style="margin-top:18px; gap:12px;">
-        <a class="btn btn-primary" href="https://wa.me/447557880726?text=Hi%2C%20please%20share%20intensive%20course%20pricing" target="_blank" rel="noopener">Ask for intensive pricing</a>
-        <a class="btn btn-secondary" href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20a%20lesson" target="_blank" rel="noopener">Book on WhatsApp</a>
-      </div>
-    </div>
-  </section>
 
-  <section id="reviews">
-    <div class="container">
-      <div class="section-title">
-        <h2>Learner feedback</h2>
-        <p>Sample quotes you can replace with your Google reviews.</p>
+      <div class="categories">
+        <button class="category-btn active">All</button>
+        <button class="category-btn">Nature</button>
+        <button class="category-btn">Architecture</button>
+        <button class="category-btn">Travel</button>
+        <button class="category-btn">Abstract</button>
       </div>
-      <div class="reviews">
-        <div class="review">
-          <strong>“Passed first time.”</strong>
-          <p>Clear guidance, patient coaching, and realistic mock tests.</p>
-        </div>
-        <div class="review">
-          <strong>“Intensive course delivered.”</strong>
-          <p>Booked a week of lessons and felt fully prepared on test day.</p>
-        </div>
-        <div class="review">
-          <strong>“Supportive and calm.”</strong>
-          <p>Great at breaking down tricky maneuvers and boosting confidence.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="gallery">
-    <div class="container">
-      <div class="section-title">
-        <h2>Recent passes</h2>
-        <p>Swap these placeholder images with your students’ success photos.</p>
-      </div>
       <div class="gallery">
-        <figure>
-          <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80" alt="Student with driving certificate" />
-          <figcaption>Happy learner, test day</figcaption>
-        </figure>
-        <figure>
-          <img src="https://images.unsplash.com/photo-1502877828070-33b167ad6860?auto=format&fit=crop&w=900&q=80" alt="Car with L plate" />
-          <figcaption>Practice on local routes</figcaption>
-        </figure>
-        <figure>
-          <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80" alt="Instructor car" />
-          <figcaption>Automatic training vehicle</figcaption>
-        </figure>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Mountain peaks" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">Alpine Majesty</h3>
+            <p class="gallery-item-desc">Snow-capped peaks at dawn</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80" alt="Japanese temple" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">Kyoto Dreams</h3>
+            <p class="gallery-item-desc">Traditional Japanese architecture</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80" alt="Ocean waves" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">Ocean Whispers</h3>
+            <p class="gallery-item-desc">Waves meeting the shore</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Starry mountain" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">Starlit Peaks</h3>
+            <p class="gallery-item-desc">Mountains under the stars</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Foggy forest" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">Misty Forest</h3>
+            <p class="gallery-item-desc">Morning fog in the woods</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Desert dunes" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">Golden Sands</h3>
+            <p class="gallery-item-desc">Desert landscapes at sunset</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1682686581362-7c43fb1a61b5?auto=format&fit=crop&w=800&q=80" alt="Underwater scene" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">Deep Blue</h3>
+            <p class="gallery-item-desc">Underwater wonders</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=800&q=80" alt="Mountain sunrise" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">First Light</h3>
+            <p class="gallery-item-desc">Sunrise over the mountains</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Lake reflection" />
+          <div class="gallery-item-overlay">
+            <h3 class="gallery-item-title">Mirror Lake</h3>
+            <p class="gallery-item-desc">Perfect reflections</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="faq">
+  <section class="featured" id="featured">
     <div class="container">
-      <div class="section-title">
-        <h2>FAQs</h2>
-        <p>Quick answers for new learners.</p>
+      <div class="section-header">
+        <h2>Featured <span>Collections</span></h2>
+        <p>Hand-picked selections showcasing the best of photography</p>
       </div>
-      <div class="faq">
-        <details>
-          <summary>Is this automatic only?</summary>
-          <p>Yes—automatic lessons to help you progress faster.</p>
-        </details>
-        <details>
-          <summary>Do you offer intensive courses?</summary>
-          <p>Yes. Message us on WhatsApp for a tailored plan.</p>
-        </details>
-        <details>
-          <summary>Where do you teach?</summary>
-          <p>Coventry area and local DVSA test routes.</p>
-        </details>
-        <details>
-          <summary>Do you run mock tests?</summary>
-          <p>Yes, to mirror real test conditions and build confidence.</p>
-        </details>
+
+      <div class="featured-grid">
+        <div class="featured-main">
+          <img src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?auto=format&fit=crop&w=1200&q=80" alt="Featured landscape" />
+          <div class="featured-main-content">
+            <span class="featured-badge">Editor's Choice</span>
+            <h3>Northern Lights Adventure</h3>
+            <p>Capturing the magical aurora borealis in Iceland's remote wilderness.</p>
+          </div>
+        </div>
+
+        <div class="featured-side">
+          <div class="featured-side-item">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Mountain view" />
+            <div class="featured-side-content">
+              <h4>Mountain Escapes</h4>
+            </div>
+          </div>
+          <div class="featured-side-item">
+            <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80" alt="Waterfall" />
+            <div class="featured-side-content">
+              <h4>Water Wonders</h4>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
+  <section class="about" id="about">
     <div class="container">
-      <div class="contact">
-        <div>
-          <h3>Ready to start?</h3>
-          <p>Automatic lessons, intensive options, and focused mock tests.</p>
+      <div class="about-content">
+        <div class="about-images">
+          <img class="about-img-1" src="https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?auto=format&fit=crop&w=800&q=80" alt="Photographer" />
+          <img class="about-img-2" src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=600&q=80" alt="Camera" />
         </div>
-        <div class="hero-actions" style="gap:10px;">
-          <a class="btn btn-primary" href="https://wa.me/447557880726?text=Hi%2C%20I%27d%20like%20to%20book%20automatic%20lessons" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn btn-secondary" href="mailto:dphago@hotmail.com">dphago@hotmail.com</a>
+        <div class="about-text">
+          <h2>About <span>ImageHub</span></h2>
+          <p>We're passionate about showcasing the world's beauty through stunning photography. Our collection features work from talented photographers across the globe.</p>
+          <p>Whether you're looking for inspiration, wallpapers, or just want to explore beautiful imagery, you've come to the right place.</p>
+          <ul class="features-list">
+            <li>High-resolution images</li>
+            <li>Curated collections</li>
+            <li>Regular updates</li>
+            <li>Free to explore</li>
+          </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h2>Get In Touch</h2>
+          <p>Have questions or want to collaborate? We'd love to hear from you!</p>
+          <div class="contact-links">
+            <a href="mailto:hello@imagehub.com" class="contact-link">
+              <span class="contact-link-icon">✉️</span>
+              <span>hello@imagehub.com</span>
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">📍</span>
+              <span>San Francisco, CA</span>
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">🌐</span>
+              <span>www.imagehub.com</span>
+            </a>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks for your message!');">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      © Reference Driving School · Automatic specialists
+      <div class="footer-content">
+        <a href="#" class="footer-logo">ImageHub</a>
+        <div class="social-links">
+          <a href="#" class="social-link" title="GitHub">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="#" class="social-link" title="Twitter">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+          </a>
+          <a href="#" class="social-link" title="Instagram">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 ImageHub. All rights reserved. Made with ❤️ for GitHub Pages.</p>
+      </div>
     </div>
   </footer>
 </body>
 </html>
-
